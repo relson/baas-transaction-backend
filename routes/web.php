@@ -17,6 +17,11 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+// Grupo de rotas da API
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->post('/transfer', 'TransferController@makeTransfer');
+});
+
 $router->get('/example', 'ExampleController@example');
 
 /*
