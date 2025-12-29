@@ -1,0 +1,49 @@
+services:
+  # Aplicação PHP
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: baas-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - baas-network
+
+  # Servidor Web Nginx
+  nginx:
+    image: nginx:alpine
+    container_name: baas-nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - baas-network
+    depends_on:
+      - app
+
+  # Banco de Dados
+  db:
+    image: mysql:8.0
+    container_name: baas-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: baas_db
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
+      MYSQL_USER: user
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+    networks:
+      - baas-network
+
+networks:
+  baas-network:
+    driver: bridge
