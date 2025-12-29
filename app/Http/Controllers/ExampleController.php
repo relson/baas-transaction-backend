@@ -14,5 +14,18 @@ class ExampleController extends Controller
         //
     }
 
-    //
+    /**
+     * @OA\Get(
+     *     path="/example",
+     *     summary="Example endpoint",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation"
+     *     )
+     * )
+     */
+    public function example()
+    {
+        return 'Example';
+    }
 }
