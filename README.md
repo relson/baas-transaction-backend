@@ -30,3 +30,34 @@ Siga os passos abaixo para rodar a aplicação em ambiente de desenvolvimento:
    git clone https://github.com/relson/baas-transaction-backend.git
    cd baas-transaction-backend
    ```
+
+2. **Configure o ambiente**
+
+   Copie o arquivo de exemplo `.env.example` para um novo arquivo chamado `.env`. Este arquivo conterá as variáveis de ambiente da sua aplicação.
+   ```bash
+   cp .env.example .env
+   ```
+   > ⚠️ **Importante:** O arquivo `.env` já está configurado para o ambiente Docker. Não é necessário alterar as credenciais do banco de dados.
+
+3. **Inicie os containers**
+
+   Utilize o Docker Compose para construir e iniciar todos os serviços necessários.
+   ```bash
+   docker-compose up -d --build
+   ```
+
+4. **Instale as dependências**
+
+   Acesse o container da aplicação e execute o Composer para instalar as dependências do PHP.
+   ```bash
+   docker-compose exec app composer install
+   ```
+
+5. **Execute as migrações**
+
+   Crie as tabelas no banco de dados executando o Artisan, a ferramenta de linha de comando do Lumen.
+   ```bash
+   docker-compose exec app php artisan migrate
+   ```
+
+Com estes passos, a API estará em execução e pronta para receber requisições em `http://localhost:8000`.
