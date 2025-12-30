@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "7a296f88-58d1-49ba-9da4-9115e76584c9",
+		"name": "Bass - Transaction",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7074321"
+	},
+	"item": [
+		{
+			"name": "Transfer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"value\": 200.0,\n    \"payer\": 1,\n    \"payee\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/transfer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"transfer"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
