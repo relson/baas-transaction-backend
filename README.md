@@ -61,16 +61,3 @@ Siga os passos abaixo para rodar a aplicação em ambiente de desenvolvimento:
    ```
 
 Com estes passos, a API estará em execução e pronta para receber requisições em `http://localhost:8000`.
-
-## 📚 Documentação da API
-
-A documentação completa da API, gerada com Swagger, está disponível enquanto a aplicação estiver em execução.
-
-Você pode acessá-la no seguinte endereço:
-
-[http://localhost:8000/api/documentation](http://localhost:8000/api/documentation)
-
-Para atualizar a documentação após fazer alterações nas anotações do código, execute o comando:
-```bash
-docker-compose exec app php artisan l5-swagger:generate
-```
