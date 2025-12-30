@@ -7,6 +7,7 @@ use App\Models\Wallet;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\DB;
 use Exception;
+use App\Jobs\SendNotificationJob;
 
 class TransferService
 {
@@ -65,6 +66,9 @@ class TransferService
                 'payee_wallet_id' => $payeeWallet->id,
                 'value' => $value
             ]);
+
+            // 7. Enviar Notificações (Assíncrono)
+            dispatch(new SendNotificationJob($payeeId, "Voce recebeu uma transferência R$ {$value}."));
 
             return $transaction;
         });
